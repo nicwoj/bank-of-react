@@ -12,7 +12,6 @@ class App extends Component {
 
   constructor() {
     super();
-
     this.state = {
       accountBalance: 0,
       debits: [],
@@ -36,14 +35,14 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
 
-      //credits
-      axios
-      .get("https://moj-api.herokuapp.com/credits")
-      .then((response) => {
-        console.log(response)
-        this.setState( {credits: response.data})
-      })
-      .catch((err) => console.log(err));
+    //credits
+    axios
+    .get("https://moj-api.herokuapp.com/credits")
+    .then((response) => {
+      console.log(response)
+      this.setState( {credits: response.data})
+    })
+    .catch((err) => console.log(err));
   };
 
   mockLogIn = (logInInfo) => {
@@ -63,23 +62,27 @@ class App extends Component {
         memberSince={this.state.currentUser.memberSince}
       />
     );
+
     const DebitComponent = () => ( 
       <Debits 
         debits={this.state.debits} 
         debitBal={this.state.debitBal}
         credits={this.state.credits}
       />);
+
     const CreditComponent = () => ( 
       <Credits 
         credits={this.state.credits}
         creditBal={this.state.creditBal}
         debits={this.state.debits} 
       />);
+
     const AccountBalanceComponent = () => ( 
       <AccountBalance 
         debitBal={this.state.debitBal}
         creditBal={this.state.creditBal}
       />);
+
     const LogInComponent = () => ( 
       <LogIn 
         user={this.state.currentUser}

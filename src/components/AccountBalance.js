@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 
-//class AccountBalance extends Component {
 function AccountBalance(props) {
 
   let totalDeb = props.debits.reduce(function(prev, cur) {
@@ -24,6 +23,8 @@ function AccountBalance(props) {
 
       <br></br>
       <Link to="/">Home</Link>
+      <br></br>
+      <Link to="/userProfile">Back</Link>
     </div>
   );
 }

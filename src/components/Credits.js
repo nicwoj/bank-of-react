@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import axios from "axios";
 import {Link} from "react-router-dom";
 import AccountBalance from "./AccountBalance";
 
@@ -34,9 +33,6 @@ class Credits extends Component {
           </tbody>
         </table>
 
-        <br></br>
-        <Link to="/AccountBalance">Account Balance</Link>
-        
         <AccountBalance 
           debits={this.props.debits} 
           credits={this.props.credits} 
