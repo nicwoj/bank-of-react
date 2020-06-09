@@ -17,6 +17,9 @@ class UserProfile extends Component {
         <br></br>
         <Link to="/">Home</Link>
         <br></br>
+        <Link to="/debits">Debits</Link>
+        <br></br>
+        <Link to="/credits">Credits</Link>
 
       </div>
     );

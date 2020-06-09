@@ -6,6 +6,7 @@ import LogIn from "./components/LogIn";
 import Debits from "./components/Debits";
 import Credits from "./components/Credits";
 import AccountBalance from "./components/AccountBalance";
+import axios from "axios";
 
 class App extends Component {
 
@@ -13,7 +14,12 @@ class App extends Component {
     super();
 
     this.state = {
-      accountBalance: 14568.27,
+      accountBalance: 0,
+      debits: [],
+      credits: [],
+      debitBal: "",
+      creditBal: "",
+      totalBal: "",
       currentUser: {
         userName: 'bob_loblaw',
         memberSince: '08/23/99',
@@ -21,11 +27,30 @@ class App extends Component {
     }
   }
 
-  // mockLogIn = (logInInfo) => {
-  //   const newUser = {...this.state.currentUser}
-  //   newUser.userName = logInInfo.userName
-  //   this.setState({currentUser: newUser})
-  // }
+  componentDidMount = () => {
+    //debits
+    axios
+      .get("https://moj-api.herokuapp.com/debits")
+      .then((response) => {
+        this.setState( {debits: response.data})
+      })
+      .catch((err) => console.log(err));
+
+      //credits
+      axios
+      .get("https://moj-api.herokuapp.com/credits")
+      .then((response) => {
+        console.log(response)
+        this.setState( {credits: response.data})
+      })
+      .catch((err) => console.log(err));
+  };
+
+  mockLogIn = (logInInfo) => {
+    const newUser = {...this.state.currentUser}
+    newUser.userName = logInInfo.userName
+    this.setState({currentUser: newUser})
+  }
 
   render() {
 
@@ -38,17 +63,29 @@ class App extends Component {
         memberSince={this.state.currentUser.memberSince}
       />
     );
-
-    const DebitComponent = () => ( <Debits />);
-    const CreditComponent = () => ( <Credits />);
-    const AccountBalanceComponent = () => ( <AccountBalance />);
-
-    // const LogInComponent = () => ( 
-    //   <LogIn 
-    //     user={this.state.currentUser}
-    //     mockLogIn={this.state.mockLogIn} {...this.props}
-    //   />
-    // );
+    const DebitComponent = () => ( 
+      <Debits 
+        debits={this.state.debits} 
+        debitBal={this.state.debitBal}
+        credits={this.state.credits}
+      />);
+    const CreditComponent = () => ( 
+      <Credits 
+        credits={this.state.credits}
+        creditBal={this.state.creditBal}
+        debits={this.state.debits} 
+      />);
+    const AccountBalanceComponent = () => ( 
+      <AccountBalance 
+        debitBal={this.state.debitBal}
+        creditBal={this.state.creditBal}
+      />);
+    const LogInComponent = () => ( 
+      <LogIn 
+        user={this.state.currentUser}
+        mockLogIn={this.state.mockLogIn} {...this.props}
+      />
+    );
 
     return (
         <Router>
@@ -58,7 +95,7 @@ class App extends Component {
             <Route exact path="/debits" render={DebitComponent}/> 
             <Route exact path="/credits" render={CreditComponent}/> 
             <Route exact path="/accountBalance" render={AccountBalanceComponent}/>
-            {/* <Route exact path="/login" render={LogInComponent}/> */}
+            <Route exact path="/login" render={LogInComponent}/>
           </div>
         </Router>
     );
