@@ -8,13 +8,22 @@ class Credits extends Component {
     this.state = {
       credits: props.credits,
       creditBal: props.creditBal,
-      debits: props.debits
+      debits: props.debits,
+
+      newDescription: "",
+      newAmount: "",
+      newDate: "",
     };
   }
 
   render() {
     return (
-      <div>
+      <>
+      <div className="addDebit">
+
+      </div>
+
+      <div className="transactions">
         <h1>Credits</h1>
         <table>
           <tbody>
@@ -38,6 +47,7 @@ class Credits extends Component {
           credits={this.props.credits} 
         />
       </div>
+      </>
     );
   }
 }

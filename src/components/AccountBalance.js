@@ -4,11 +4,11 @@ import {Link} from "react-router-dom";
 function AccountBalance(props) {
 
   let totalDeb = props.debits.reduce(function(prev, cur) {
-    return prev + cur.amount;
+    return prev + parseFloat(cur.amount);
   }, 0);
 
   let totalCred = props.credits.reduce(function(prev, cur) {
-    return prev + cur.amount;
+    return prev + parseFloat(cur.amount);
   }, 0);
 
   let balance = (totalCred - totalDeb).toFixed(2)
