@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import AccountBalance from "./AccountBalance";
 import { uuid } from 'uuidv4';
+import AccountBalance from "./AccountBalance";
 
 class Debits extends Component {
   constructor(props) {
@@ -13,12 +12,7 @@ class Debits extends Component {
 
       newDescription: "",
       newAmount: "",
-      newDate: "",
-      newID: "",
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit = (e) => {
@@ -35,7 +29,7 @@ class Debits extends Component {
     arr.push(update)
     this.setState( {debits: arr})
 
-    console.log(update)
+    //console.log(update)
   }
 
   handleChange = (e) => {
@@ -58,7 +52,7 @@ class Debits extends Component {
             {this.props.debits.map(debit => 
               <tr key={debit.id}>
                 <td>{debit.description}</td>
-                <td>{debit.amount}</td>
+                <td>{"$"}{debit.amount}</td>
                 <td>{debit.date}</td>
               </tr>
             )}

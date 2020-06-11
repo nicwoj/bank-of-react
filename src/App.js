@@ -7,6 +7,7 @@ import Debits from "./components/Debits";
 import Credits from "./components/Credits";
 import AccountBalance from "./components/AccountBalance";
 import axios from "axios";
+import "./App.css";
 
 class App extends Component {
 

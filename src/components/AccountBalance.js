@@ -17,9 +17,9 @@ function AccountBalance(props) {
     <div>
       <h1>Account Balance</h1>
 
-      <p>Total credits: {totalCred}</p>
-      <p>Total debits: {totalDeb}</p>
-      <p>Balance: {balance}</p>
+      <p>Total credits: ${totalCred}</p>
+      <p>Total debits: ${totalDeb}</p>
+      <p>Balance: ${balance}</p>
 
       <br></br>
       <Link to="/">Home</Link>
