@@ -7,6 +7,7 @@ import Debits from "./components/Debits";
 import Credits from "./components/Credits";
 import AccountBalance from "./components/AccountBalance";
 import axios from "axios";
+import "./App.css";
 
 class App extends Component {
 
@@ -51,6 +52,13 @@ class App extends Component {
     this.setState({currentUser: newUser})
   }
 
+  // addDeb = (info) => {
+  //   const newDeb = {...this.state.debits}
+  //   newDeb.description = info.description
+  //   newDeb.amount = info.amount
+  //   this.setState({debits: newDeb})
+  // }
+
   render() {
 
     //const HomeComponent = () => ( <Home accountBalance={this.state.accountBalance}/> );
@@ -75,6 +83,8 @@ class App extends Component {
         credits={this.state.credits}
         creditBal={this.state.creditBal}
         debits={this.state.debits} 
+
+        //addDeb={this.state.addDeb} {...this.props}
       />);
 
     const AccountBalanceComponent = () => ( 
